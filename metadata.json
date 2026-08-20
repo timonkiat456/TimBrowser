@@ -1,0 +1,6 @@
+{
+  "name": "AutoBrowser - Android Auto Web Browser",
+  "description": "Automotive web browser companion for Android and Android Auto featuring bookmark management, hands-free voice search, TTS webpage reader, driving safety controls, and dual-screen synchronization.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
