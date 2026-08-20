@@ -243,15 +243,32 @@ export const BrowserEngine: React.FC<Props> = ({
             type="text"
             value={inputUrl === 'car://home' ? '' : inputUrl}
             onChange={(e) => setInputUrl(e.target.value)}
-            placeholder="Search web or enter automotive URL..."
-            className={`w-full pl-9 pr-24 py-2 rounded-2xl text-xs sm:text-sm font-medium border transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                e.currentTarget.form?.requestSubmit();
+              }
+            }}
+            placeholder="Type website (e.g. cnn.com, wikipedia.org) or search..."
+            className={`w-full pl-9 pr-32 py-2 rounded-2xl text-xs sm:text-sm font-medium border transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 ${
               vehicleState.isNightMode
                 ? 'bg-neutral-800/90 border-neutral-700 text-white placeholder-neutral-500 focus:bg-neutral-800'
                 : 'bg-neutral-100 border-neutral-300 text-neutral-900 placeholder-neutral-400 focus:bg-white'
             }`}
           />
 
-          <div className="absolute right-2 flex items-center gap-1">
+          <div className="absolute right-1.5 flex items-center gap-1">
+            {/* Direct GO / Navigate Button */}
+            {inputUrl && inputUrl !== 'car://home' && (
+              <button
+                type="submit"
+                id="browser-submit-go-btn"
+                className="px-2 py-1 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-all shadow-sm flex items-center gap-1"
+                title="Navigate to URL / Search"
+              >
+                <span>Go</span>
+              </button>
+            )}
+
             {/* Voice Mic inside input */}
             {onOpenVoiceAssistant && (
               <button
